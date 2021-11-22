@@ -1,0 +1,16 @@
+1. Creds one
+
+
+account_sid = "ACd10ed520e5effa5ba697ec1820f3464e"
+auth_token = "c1009ef43f880e10d2189f8dca9f0a51"
+service =     "VA03cf95bad34dd5247bf0dac0a7e4d700"
+client = Client(account_sid, auth_token)
+
+
+
+2. Creds two
+
+
+account_sid = "AC178510f05aa78acedcad6c682f7651aa"
+auth_token = "4851e59ccdd0d4e4b05d38c93b782087"
+service = "VA5c9585e1e5dda1fca8a9f9b73faf1d23"
