@@ -80,7 +80,7 @@ def register_producer():
 
 @app.route('/wallet')
 def wallet():
-    return render_template('index.html')
+    return render_template('index.html', data = session['temp_dict'])
 
 @app.route('/signup', methods=['POST'])
 def submit():
@@ -106,6 +106,18 @@ def submit():
 
     session['current_otp'] = mail_otp
     session['phone_num'] = phone
+    session['name'] = name
+    session['id'] = kishan_id
+    session['aadhar'] = aadhaar_no
+    session['email'] = email
+
+    session['temp_dict'] = {
+        'name' : session['phone_num'],
+        'id' : session['id'],
+        'aadhar': session['aadhar'],
+        'email': session['email'],
+        'phone': session['phone_num'] 
+    }
 
     response = {'email': email,
                 'phone': phone,
@@ -175,7 +187,7 @@ def new_wallet():
     random_gen = Crypto.Random.new().read
     private_key = RSA.generate(1024, random_gen)
     public_key = private_key.publickey()
-
+    
     response = {
         'private_key': binascii.hexlify(private_key.export_key(format("DER"))).decode('ascii'),
         'public_key': binascii.hexlify(public_key.export_key(format("DER"))).decode('ascii')

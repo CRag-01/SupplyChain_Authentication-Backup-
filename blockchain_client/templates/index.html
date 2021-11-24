@@ -42,13 +42,59 @@
                 <div class="card-body">
                     <h4 class="card-title">Key Generator</h4>
                     <p class="cardtext"> Click on the button below to generate your public and private keys.</p>
-                    <input type="button" class="btn btn-primary btn-lg" value="Generate Keys">
+                    <input type="button" class="btn btn-primary btn-lg" id="generate_btn" value="Generate Keys">
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container">
+
+        <div class="row">
+            <label class="col-sm-2">Name:</label>
+            <div class="col-sm-10">
+                <input type="text" id="name" name="name" value={{data.name}} readonly><br><br>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <label class="col-sm-2">Identity Number:</label>
+            <div class="col-sm-10">
+                <input type="text" id="id" name="id" value={{data.id}} readonly><br><br>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <label class="col-sm-2">Aadhar No.:</label>
+            <div class="col-sm-10">
+                <input type="text" id="aadhar" name="aadhar" value="{{data.aadhar}}" readonly><br><br>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <label class="col-sm-2">Mobile No.:</label>
+            <div class="col-sm-10">
+                <input type="text" id="phone" name="phone" value={{data.phone}} readonly><br><br>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <label class="col-sm-2">Email:</label>
+            <div class="col-sm-10">
+                <input type="text" id="email" name="email" value={{data.email}} readonly><br><br>
+            </div>
+        </div>
+
+        <br>
+
         <div class="row">
             <label class="col-sm-2">Public Key:</label>
             <div class="col-sm-10">
@@ -89,7 +135,7 @@
      
     <script>
        $(function() {
-            $('input').click(function() {
+            $('#generate_btn').click(function() {
 
                 $.ajax({
                     url: '/wallet/new',
