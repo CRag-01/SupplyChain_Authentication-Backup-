@@ -12,3 +12,12 @@ aadhar card  ------> proceed   phone_num
 
 
 }        
+
+
+{
+				asdbkjabsdjbahsda23819 : session[temp_dict]
+
+				asdasdasdawdawsdasd : session[temp_dict]
+
+				asdbkjabsdjbahsda23819 : session[temp_dict]
+}

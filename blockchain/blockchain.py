@@ -255,6 +255,16 @@ def new_transaction():
         return jsonify(response), 201
 
 
+@app.route('/users/new', methods=['POST'])
+def new_user():
+    values = request.form
+    name = values['phone']
+    email = values['email']
+    response = {name: email}
+    print(response)
+    return jsonify(response), 201
+
+
 @app.route('/nodes/resolve', methods=['GET'])
 def consensus():
     replaced = blockchain.resolve_conflicts()

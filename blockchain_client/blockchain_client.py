@@ -80,7 +80,7 @@ def register_producer():
 
 @app.route('/wallet')
 def wallet():
-    return render_template('index.html', data = session['temp_dict'])
+    return render_template('profile_wallet.html', data = session['temp_dict'])
 
 @app.route('/signup', methods=['POST'])
 def submit():
