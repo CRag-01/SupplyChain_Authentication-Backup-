@@ -101,7 +101,7 @@
             <div class="row">
                 <label class="col-sm-2">Public Key:</label>
                 <div class="col-sm-10">
-                    <textarea id="public_key" rows="5" class="form-control" readonly></textarea>
+                    <textarea id="public_key"  name = "public_key" rows="5" class="form-control" readonly></textarea>
                 </div>
             </div>
 
@@ -110,7 +110,7 @@
             <div class="row">
                 <label class="col-sm-2">Private Key:</label>
                 <div class="col-sm-10">
-                    <textarea id="private_key" rows="5" class="form-control" readonly></textarea>
+                    <textarea id="private_key" name = "private_key" rows="5" class="form-control" readonly></textarea>
                 </div>
             </div>
 
@@ -133,17 +133,15 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="card-body">
-                        <a href='/make/transaction'>
-                            <input type="button" class="btn btn-primary btn-lg" id="add_btn" value="Proceed for Transactions">
-                        </a>
+                    <input type="button" class="btn btn-primary btn-lg" id="add_btn" value="Proceed for Transactions">
                 </div>
             </div>
         </div>
     </div>
 
     <!-- User Add Success Modal -->
-    <!-- <div class="modal modal-alert" id="useradd_success_modal" tabindex="-1" role="dialog"
-        aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal modal-alert" id="useradd_success_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -159,13 +157,16 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" id="ok_btn" class="btn btn-success"
-                        data-dismiss="modal">OK</button>
+                    <p>
+                        <a href='/make/transaction'><button type="button" id="modal_ok_btn" class="btn btn-success"
+                                data-dismiss="modal">OK</button>
+                        </a>
+                    </p>
                 </div>
 
             </div>
         </div>
-    </div> -->
+    </div>
 
     <script> src = "/static/vendor/jquery/jquery.min.js"</script>
     <script> src = "/static/vendor/bootstrap/js/bootstrap.bundle.min.js"</script>
@@ -173,6 +174,7 @@
     <script> src = "/static/vendor/DataTables/js/ellipsis.js"</script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script>
         $(function () {
@@ -202,9 +204,21 @@
                     data: $('#profile_form').serialize(),
 
                     success: function (response) {
-                        // $('#useradd_success_modal').modal('show'); 
+                        $('#useradd_success_modal').modal('show');
                         console.log('POST to Node Network - Success!');
                         console.log(response);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            $('#modal_ok_btn').click(function () {
+                $.ajax({
+                    url: '/make/transaction',
+                    success: function (resposne) {
+                        console.log('Navingation OK.')
                     },
                     error: function (error) {
                         console.log(error);

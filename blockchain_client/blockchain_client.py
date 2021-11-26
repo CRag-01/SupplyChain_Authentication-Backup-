@@ -112,7 +112,7 @@ def submit():
     session['email'] = email
 
     session['temp_dict'] = {
-        'name' : session['phone_num'],
+        'name' : session['name'],
         'id' : session['id'],
         'aadhar': session['aadhar'],
         'email': session['email'],

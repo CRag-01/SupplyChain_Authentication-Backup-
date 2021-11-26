@@ -22,6 +22,7 @@ class Blockchain:
     def __init__(self):
         self.transactions = []
         self.chain = []
+        self.users = {}
         self.nodes = set()
         self.node_id = str(uuid4()).replace('-', '')
         # Need to create the Genesis Block
@@ -73,7 +74,7 @@ class Blockchain:
         return True
 
     def resolve_conflicts(self):
-        print("CHeck: Entered resolve_conflicts block")
+        print("Check: Entered resolve_conflicts block")
         neighbours = self.nodes
         print(neighbours)
         new_chain = None
@@ -151,6 +152,14 @@ class Blockchain:
         else:
             raise ValueError('Invalid URL')
 
+    def add_new_user(self, public_key, temp_dict):
+        self.users[public_key] = temp_dict
+        return 'OK'
+    
+    def fetch_userDetails(self, input):
+        # TODO: Add error handling here - if input not in keys
+        details_dict = self.users[input]
+        return details_dict
 
 # Instantiating the Blockchain
 blockchain = Blockchain()
@@ -168,6 +177,11 @@ def index():
 @app.route('/configure')
 def configure():
     return render_template('./configure.html')
+
+
+@app.route('/view/users')
+def view_user():
+    return render_template('./view_users.html')
 
 
 @app.route('/nodes/get', methods=['GET'])
@@ -194,6 +208,14 @@ def register_node():
     return jsonify(response), 200
 
 
+@app.route('/fetch/userDetails', methods=['POST'])
+def fetch_details():
+    values = request.form
+    input_public_key = str(values['public_key'])
+    response = blockchain.fetch_userDetails(input_public_key)
+    return response
+    
+        
 @app.route('/chain', methods=['GET'])
 def get_chain():
     response = {
@@ -258,9 +280,23 @@ def new_transaction():
 @app.route('/users/new', methods=['POST'])
 def new_user():
     values = request.form
-    name = values['phone']
+
+    name = values['name']
+    id = values['id']
+    aadhar = values['aadhar']
+    phone = values['phone']
     email = values['email']
-    response = {name: email}
+    pub_key = values['public_key']
+
+    temp_dict = {
+        'name': name,
+        'id': id,
+        'aadhar': aadhar,
+        'phone': phone,
+        'email': email
+    }
+    message = blockchain.add_new_user(pub_key, temp_dict)
+    response = {'message': message}
     print(response)
     return jsonify(response), 201
 
