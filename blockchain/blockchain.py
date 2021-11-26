@@ -252,6 +252,7 @@ def mine():
 @app.route('/transactions/get', methods=['GET'])
 def get_transaction():
     transactions = blockchain.transactions
+    print(transactions)
     response = {'transactions': transactions}
     return jsonify(response), 200
 

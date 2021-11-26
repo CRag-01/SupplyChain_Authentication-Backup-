@@ -44,7 +44,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Key Generator</h4>
                     <p class="cardtext"> Click on the button below to generate your public and private keys.</p>
-                    <input type="button" class="btn btn-primary btn-lg" id="generate_btn" value="Generate Keys">
+                    <input type="button" onclick="style.display = 'none'" class="btn btn-primary btn-lg" id="generate_btn" value="Generate Keys">
                 </div>
             </div>
         </div>
@@ -157,10 +157,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <p>
-                        <a href='/make/transaction'><button type="button" id="modal_ok_btn" class="btn btn-success"
-                                data-dismiss="modal">OK</button>
-                        </a>
+                    <form action="/make/transaction">
+                        <input type="submit" class = "btn btn-success" value="Proceed for Transactions" />
+                    </form>
+                            
                     </p>
                 </div>
 
@@ -207,18 +207,6 @@
                         $('#useradd_success_modal').modal('show');
                         console.log('POST to Node Network - Success!');
                         console.log(response);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
-
-            $('#modal_ok_btn').click(function () {
-                $.ajax({
-                    url: '/make/transaction',
-                    success: function (resposne) {
-                        console.log('Navingation OK.')
                     },
                     error: function (error) {
                         console.log(error);
