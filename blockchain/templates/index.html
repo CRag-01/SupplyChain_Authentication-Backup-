@@ -111,8 +111,8 @@
                             formattedTimestamp = date.toLocaleTimeString('en-US', options);
                             let transaction = [ 
                                             count, 
-                                            response['chain'][i]['transactions'][j]['sender_public_key'],
-                                            response['chain'][i]['transactions'][j]['recipient_public_key'],
+                                            response['chain'][i]['transactions'][j]['sender_name'],
+                                            response['chain'][i]['transactions'][j]['recipient_name'],
                                             response['chain'][i]['transactions'][j]['amount'],
                                             formattedTimestamp,
                                             response['chain'][i]['block_number']
@@ -152,8 +152,8 @@
                     for (i=0; i<response['transactions'].length; i++ ){
                         let transaction = [ 
                                             count, 
-                                            response['transactions'][i]['sender_public_key'],
-                                            response['transactions'][i]['recipient_public_key'],
+                                            response['transactions'][i]['sender_name'],
+                                            response['transactions'][i]['recipient_name'],
                                             response['transactions'][i]['amount'],
                                          ]
                         transactions.push(transaction);

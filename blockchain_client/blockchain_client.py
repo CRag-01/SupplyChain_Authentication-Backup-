@@ -21,9 +21,9 @@ from flask import *
 
 
 #twilio configs
-account_sid = 'ACce01f251c44e2dbc1aa5156f6f1e6185'
-auth_token = '1df67e9324d10c38f801acf39e639e19'
-service = 'VAabccc67d5191c56bd0bf5c3cf3f8ea3c'
+account_sid = "AC178510f05aa78acedcad6c682f7651aa"
+auth_token = "4851e59ccdd0d4e4b05d38c93b782087"
+service =     "VA5c9585e1e5dda1fca8a9f9b73faf1d23"
 
 client = Client(account_sid, auth_token)
 
@@ -33,10 +33,12 @@ def generateOTP(otp_size = 6):
         final_otp = final_otp + str(random.randint(0,9))
     return final_otp
 
-def sendEmailVerificationRequest(sender="rice.supplychain.verify@gmail.com",receiver="chandru.satchi@gmail.com", custom_text="Hello, Your OTP is "):
+def sendEmailVerificationRequest(sender="rice.supplychain.verify@gmail.com",
+                                 receiver="chandru.satchi@gmail.com", 
+                                 custom_text="Hello, Your OTP is "):
     server = smtplib.SMTP('smtp.gmail.com',587)
     server.starttls()
-    google_app_password = "Maheraja"
+    google_app_password = "BlockChainIOT"
     server.login(sender,google_app_password)
     cur_otp = generateOTP()
     msg = custom_text +  cur_otp

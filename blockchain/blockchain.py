@@ -21,10 +21,12 @@ class Blockchain:
 
     def __init__(self):
         self.transactions = []
+        self.node_id = str(uuid4()).replace('-', '')
         self.chain = []
         self.users = {}
+        self.users[self.node_id] = {'name': 'This Node'}
+        self.users['The BlockChain'] = {'name': '(Reward)'}
         self.nodes = set()
-        self.node_id = str(uuid4()).replace('-', '')
         # Need to create the Genesis Block
         self.create_block(0, '00')
 
@@ -101,7 +103,9 @@ class Blockchain:
     def submit_transactions(self, sender_public_key, recipient_public_key, signature, amount):
         transaction = OrderedDict({
             'sender_public_key': sender_public_key,
+            'sender_name': (self.users[sender_public_key])['name'],
             'recipient_public_key': recipient_public_key,
+            'recipient_name': (self.users[recipient_public_key])['name'],
             'amount': amount
         })
 
@@ -154,6 +158,7 @@ class Blockchain:
 
     def add_new_user(self, public_key, temp_dict):
         self.users[public_key] = temp_dict
+        print(self.users)
         return 'OK'
     
     def fetch_userDetails(self, input):
